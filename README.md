@@ -1,44 +1,59 @@
-# PHB Ecommerce
+# RELOKA
 
-Proyek ini merupakan aplikasi ecommerce sederhana yang dikembangkan sebagai bahan ajar untuk mata kuliah **Pemrograman Web 2** di Politeknik Harapan Bersama Tegal.
+**RELOKA** adalah aplikasi e-commerce sederhana yang dikembangkan sebagai bahan ajar untuk mata kuliah **Pemrograman Web 2** di Politeknik Harapan Bersama Tegal.
 
-## Fitur Utama
+## 🚀 Fitur Utama
 
-- Manajement Product Category
-- Manajemen Product
-- Login & Register Customer
-- Keranjang belanja
-- Proses checkout
+- Manajemen Kategori Produk
+- Manajemen Produk
+- Login & Registrasi Customer
+- Keranjang Belanja
+- Proses Checkout
 - Dashboard Customer
-## Instalasi
 
-1. Clone repository ini:
+## 🛠️ Instalasi
+
+1. **Clone** repository ini:
     ```bash
-    git clone https://github.com/jamalapriadi/phb_ecommerce.git
-    cd phb_ecommerce
+    git clone https://github.com/Ryknabdr/RELOKA.git
+    cd RELOKA
     ```
-2. Jalankan perintah berikut untuk menginstall dependency PHP:
+
+2. **Install dependency PHP:**
     ```bash
     composer install
     ```
-3. Jalankan perintah berikut untuk menginstall dependency frontend dan menjalankan development server:
+
+3. **Install dependency frontend dan jalankan dev server:**
     ```bash
     npm install
     ```
-4. Atur konfigurasi database pada file `.env` sesuai dengan pengaturan database Anda.
-5. Jalankan migrasi database:
+
+4. **Konfigurasi database:**
+    - Salin file `.env.example` menjadi `.env`
+    - Atur konfigurasi database sesuai pengaturan lokal kamu
+
+5. **Jalankan migrasi database:**
     ```bash
     php artisan migrate
     ```
-6. Jalankan perintah berikut untuk membuka hasilnya di browser:
+
+6. **Jalankan server development:**
     ```bash
-    composer run dev
+    php artisan serve
     ```
 
-## Kontribusi
+7. (Opsional) Jika menggunakan Vite untuk frontend:
+    ```bash
+    npm run dev
+    ```
 
-Kontribusi sangat terbuka untuk pengembangan lebih lanjut. Silakan buat pull request atau issue.
+## 🤝 Kontribusi
 
-## Lisensi
+Kontribusi sangat terbuka untuk pengembangan lebih lanjut.  
+Silakan buat pull request atau laporkan issue jika menemukan bug atau ingin menambahkan fitur.
 
-Proyek ini hanya digunakan untuk keperluan pembelajaran.
+## 📄 Lisensi
+
+Proyek ini dibuat untuk keperluan pembelajaran dan tidak untuk penggunaan komersial.
+
