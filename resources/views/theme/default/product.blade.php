@@ -11,6 +11,10 @@
     @endif
 
     <div class="container my-5">
+        <form action="{{ url('/products') }}" method="GET" class="mb-4 d-flex" style="max-width: 400px;">
+            <input type="text" name="search" class="form-control me-2" placeholder="Cari produk..." value="{{ request('search') }}">
+            <button type="submit" class="btn btn-primary">Cari</button>
+        </form>
         <div class="row g-5 align-items-start">
             <div class="col-md-6">
                 <div class="bg-white shadow rounded p-3">

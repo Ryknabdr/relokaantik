@@ -128,8 +128,32 @@ class HomepageController extends Controller
 
     public function checkout()
     {
-         return view($this->themeFolder . '.checkout', [
-            'title' => 'Checkout'
+        $customer = auth()->guard('customer')->user();
+
+        if (!$customer) {
+            return redirect()->route('customer.login');
+        }
+
+        $cart = Cart::query()
+            ->with(['items', 'items.itemable'])
+            ->where('user_id', $customer->id)
+            ->first();
+
+        $cartItems = $cart ? $cart->items : collect();
+
+        $subtotal = $cartItems->sum('price');
+
+        // Shipping cost logic: free shipping for orders above 50000
+        $shippingCost = $subtotal >= 50000 ? 0 : 10000;
+
+        $total = $subtotal + $shippingCost;
+
+        return view($this->themeFolder . '.checkout', [
+            'title' => 'Checkout',
+            'cartItems' => $cartItems,
+            'subtotal' => $subtotal,
+            'shippingCost' => $shippingCost,
+            'total' => $total,
         ]);
     }
 }
