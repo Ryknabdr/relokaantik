@@ -11,7 +11,8 @@ class CartController extends Controller
 {
     private $cart;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->cart = Cart::query()->firstOrCreate(
             [
                 'user_id' => auth()->guard('customer')->user()->id
@@ -37,7 +38,7 @@ class CartController extends Controller
 
         // Find the product
         $product = Product::findOrFail($request->product_id);
-        
+
         // Check if the product is available
         if ($product->stock < $request->quantity) {
             return redirect()->back()->with('error', 'Stok tidak mencukupi untuk produk ini.');
@@ -47,6 +48,7 @@ class CartController extends Controller
             'itemable_id' => $product->id,
             'itemable_type' => $product::class,
             'quantity' => $request->quantity,
+            'options' => json_encode(['price' => $product->price]),
         ]);
 
         $this->cart->items()->save($cartItem);
@@ -84,16 +86,21 @@ class CartController extends Controller
 
         $product = $cartItem->itemable;
 
-        if($request->action == 'decrease')
-        {
+        if ($request->action == 'decrease') {
             $this->cart->decreaseQuantity(item: $cartItem);
-        }else if($request->action == 'increase'){
-            if($cartItem->quantity >= $product->stock){
+            $cartItem->options = json_encode(['price' => $product->price]);
+            $cartItem->save();
+            \Log::info('Cart item price updated after decrease', ['cart_item_id' => $cartItem->id]);
+        } else if ($request->action == 'increase') {
+            if ($cartItem->quantity >= $product->stock) {
                 return redirect()->route('cart.index')->with('error', 'Jumlah produk melebihi stok yang tersedia.');
             }
             $this->cart->increaseQuantity(item: $cartItem);
+            $cartItem->options = json_encode(['price' => $product->price]);
+            $cartItem->save();
+            \Log::info('Cart item price updated after increase', ['cart_item_id' => $cartItem->id]);
         }
-        
+
         return redirect()->route('cart.index')->with('success', 'Cart updated successfully.');
     }
 }

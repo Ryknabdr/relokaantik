@@ -1,11 +1,9 @@
 <x-layout>
     <x-slot name="title">Categories</x-slot>
-
     <div class="container py-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="section-title">Kategori Produk</h3>
         </div>
-
         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
             @foreach($categories as $category)
                 <div class="col">
@@ -47,6 +45,16 @@
         .category-card-classic:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+        }
+
+        /* Hilangkan perubahan tampilan pada tautan saat aktif, fokus, atau dikunjungi */
+        a.text-decoration-none.text-dark:active,
+        a.text-decoration-none.text-dark:focus,
+        a.text-decoration-none.text-dark:visited {
+            color: #4b3621 !important;
+            text-decoration: none !important;
+            outline: none !important;
+            filter: none !important;
         }
 
         .section-title {

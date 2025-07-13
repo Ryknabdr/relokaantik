@@ -12,7 +12,13 @@
             @forelse($products as $product)
                 <div class="col-md-3 mb-4">
                     <div class="card product-card h-100 shadow-sm">
-                        <img src="{{ $product->image_url ? $product->image_url : 'https://via.placeholder.com/350x200?text=No+Image' }}" class="card-img-top" alt="{{ $product->name }}">
+                        <div class="text-center pt-3">
+                            <div class="d-flex justify-content-center align-items-center rounded-circle border border-3 border-secondary-subtle bg-light" style="width: 80px; height: 80px; margin: auto;">
+                                <img src="{{ $product->image_url ? $product->image_url : 'https://via.placeholder.com/350x200?text=No+Image' }}"
+                                     alt="{{ $product->name }}"
+                                     style="width: 72px; height: 72px; object-fit: cover; border-radius: 8px;">
+                            </div>
+                        </div>
 
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{ $product->name }}</h5>

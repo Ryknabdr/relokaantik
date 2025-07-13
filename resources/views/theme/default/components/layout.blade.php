@@ -32,6 +32,13 @@
          padding-bottom: 0;
       }
 
+      main.container.my-5 {
+         background: transparent !important;
+         padding: 0 15px !important;
+         margin: 0 auto !important;
+         max-width: 1140px;
+      }
+
       .input-group input.form-control {
          background-color: #fdf6ee;
          border: 1px solid #c9b29d;
@@ -182,10 +189,10 @@
                <p class="small">Temukan keindahan masa lalu dengan koleksi barang antik pilihan dari seluruh Nusantara.
                </p>
                <div class="social-icons mt-3">
-                  <a href="#"><i class="bi bi-facebook"></i></a>
-                  <a href="#"><i class="bi bi-instagram"></i></a>
-                  <a href="#"><i class="bi bi-twitter"></i></a>
-                  <a href="#"><i class="bi bi-youtube"></i></a>
+                  <a href="https://www.facebook.com/ropik.tempang "><i class="bi bi-facebook"></i></a>
+                  <a href="https://www.instagram.com/rryykkhhnn?igsh=MTRkaTVodG1iM3FjMw=="><i class="bi bi-instagram"></i></a>
+                  <a href="https://x.com/AbdurRaihan17?t=YF82hlAGDIrh6KY3GZwSWg&s=09"><i class="bi bi-twitter"></i></a>
+                  <a href="https://youtube.com/@abdurraihan5326?si=GMJclYGsAExXk_4d"><i class="bi bi-youtube"></i></a>
                </div>
             </div>
             <div class="col-md-4 mb-3">

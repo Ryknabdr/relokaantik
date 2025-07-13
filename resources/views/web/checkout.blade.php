@@ -72,7 +72,11 @@
                                     <h6 class="my-0">{{ $item->itemable->name }}</h6>
                                     <small class="text-muted">{{ $item->itemable->description ?? '' }}</small>
                                 </div>
-                                <span class="text-muted">Rp{{ number_format($item->price, 0, ',', '.') }}</span>
+                                @php
+                                    $price = $item->itemable->price ?? 0;
+                                    $totalPrice = $price * $item->quantity;
+                                @endphp
+                                <span class="text-muted">Rp{{ number_format($totalPrice, 0, ',', '.') }}</span>
                             </li>
                             @endforeach
                             <li class="list-group-item d-flex justify-content-between border-top pt-2">

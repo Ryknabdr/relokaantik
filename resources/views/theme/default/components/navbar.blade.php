@@ -5,11 +5,17 @@
         background-color: #e0e0e0;
         color: #000;
     }
+
+    /* Ringankan warna hover tombol Login dan Register */
+    .btn-outline-dark:hover {
+        background-color: #d3c4a1; /* warna hover yang lebih terang dan lembut */
+        color: #3c2f2f; /* warna teks yang lebih gelap agar kontras */
+    }
 </style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom shadow-sm py-3 fixed-top" style="font-family: 'Playfair Display', serif;">
     <div class="container">
         <a class="navbar-brand text-dark fw-bold d-flex align-items-center" href="/">
-            <img src="{{ asset('theme/hexashop/assets/images/logo reloka.jpg') }}" alt="Reloka Logo" width="32" height="32" class="me-2">
+            <img src="{{ asset('theme/hexashop/assets/images/logorelokabaru.png') }}" alt="Reloka Logo" width="80" height="40" class="me-2">
             <span style="letter-spacing: 1px;">RELOKA</span>
         </a>
 
@@ -58,7 +64,7 @@
                     </div>
                 @else
                     <a class="btn btn-outline-dark rounded-pill px-3 py-1" href="{{ route('customer.login') }}">Login</a>
-                    <a class="btn btn-dark rounded-pill px-3 py-1 text-white" href="{{ route('customer.register') }}">Register</a>
+<a class="btn btn-outline-dark rounded-pill px-3 py-1" href="{{ route('customer.register') }}">Register</a>
                 @endif
             </div>
         </div>

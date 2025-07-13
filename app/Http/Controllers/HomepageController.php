@@ -139,9 +139,25 @@ class HomepageController extends Controller
             ->where('user_id', $customer->id)
             ->first();
 
+        \Log::info('Checkout cart loaded', [
+            'cart_id' => $cart ? $cart->id : null,
+            'items' => $cart ? $cart->items->map(function ($item) {
+                return [
+                    'id' => $item->id,
+                    'itemable_id' => $item->itemable_id,
+                    'quantity' => $item->quantity,
+                    'price' => $item->price,
+                    'options' => $item->options,
+                ];
+            }) : []
+        ]);
+
         $cartItems = $cart ? $cart->items : collect();
 
-        $subtotal = $cartItems->sum('price');
+        $subtotal = $cartItems->sum(function($item) {
+            $price = $item->itemable->price ?? 0;
+            return $price * $item->quantity;
+        });
 
         // Shipping cost logic: free shipping for orders above 50000
         $shippingCost = $subtotal >= 50000 ? 0 : 10000;
