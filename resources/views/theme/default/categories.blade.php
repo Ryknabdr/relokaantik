@@ -4,7 +4,7 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="section-title">Kategori Produk</h3>
         </div>
-        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
+        <div class="row row-cols-3 row-cols-md-3 row-cols-lg-4 g-3 justify-content-center">
             @foreach($categories as $category)
                 <div class="col">
                     <a href="{{ URL::to('/category/'.$category->slug) }}" class="text-decoration-none text-dark">

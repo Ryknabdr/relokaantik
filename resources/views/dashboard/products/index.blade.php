@@ -1,5 +1,5 @@
 @php
-use Illuminate\Support\Facades\Storage;
+    use Illuminate\Support\Facades\Storage;
 @endphp
 
 <x-layouts.app :title="__('Products')">
@@ -33,64 +33,83 @@ use Illuminate\Support\Facades\Storage;
         <table class="min-w-full leading-normal border border-gray-300 rounded-lg overflow-hidden table-fixed">
             <thead class="bg-gray-200">
                 <tr>
-                    <th class="w-10 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    <th
+                        class="w-10 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                         ID
                     </th>
-                    <th class="w-16 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    <th
+                        class="w-16 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                         Image
                     </th>
-                    <th class="w-32 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    <th
+                        class="w-32 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                         Name
                     </th>
-                    <th class="w-24 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    <th
+                        class="w-24 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                         Slug
                     </th>
-                    <th class="w-48 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    <th
+                        class="w-48 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                         Description
                     </th>
-                    <th class="w-20 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    <th
+                        class="w-20 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                         SKU
                     </th>
-                    <th class="w-20 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    <th
+                        class="w-20 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                         Price
                     </th>
-                    <th class="w-16 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    <th
+                        class="w-16 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                         Stock
                     </th>
-                    <th class="w-28 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    <th
+                        class="w-28 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                         Product Category ID
                     </th>
-                    <th class="w-32 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    <th
+                        class="w-32 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                         Image URL
                     </th>
-                    <th class="w-16 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    <th
+                        class="w-16 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                         Active
                     </th>
-                    <th class="w-28 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    <th
+                        class="w-28 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                         Created At
                     </th>
-                    <th class="w-28 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    <th
+                        class="w-28 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                         Updated At
                     </th>
-                    <th class="w-20 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    <th
+                        class="w-28 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                        On/Off
+                    </th>
+                    <th
+                        class="w-20 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                         Actions
                     </th>
                 </tr>
             </thead>
             <tbody class="bg-white">
-                @foreach($products as $key=>$product)
+                @foreach($products as $key => $product)
                     <tr class="border-b border-gray-300 hover:bg-gray-50">
                         <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
                             {{ $product->id }}
                         </td>
                         <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
-@if($product->image_url)
-    <img src="{{ url('/storage/' . $product->image_url) }}" alt="{{ $product->name }}" class="h-10 w-10 object-cover rounded">
-@else
-    <div class="h-10 w-10 bg-gray-200 flex items-center justify-center rounded">
-        <span class="text-gray-500 text-sm">N/A</span>
-    </div>
-@endif
+                            @if($product->image_url)
+                                <img src="{{ url('/storage/' . $product->image_url) }}" alt="{{ $product->name }}"
+                                    class="h-10 w-10 object-cover rounded">
+                            @else
+                                <div class="h-10 w-10 bg-gray-200 flex items-center justify-center rounded">
+                                    <span class="text-gray-500 text-sm">N/A</span>
+                                </div>
+                            @endif
                         </td>
                         <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
                             {{ $product->name }}
@@ -125,13 +144,32 @@ use Illuminate\Support\Facades\Storage;
                         <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
                             {{ $product->updated_at }}
                         </td>
+                        <td>
+                            <form id="sync-product-{{ $product->id }}" action="{{ route('products.sync', $product->id) }}"
+                                method="POST">
+                                @csrf
+                                <input type="hidden" name="is_active"
+                                    value="@if($product->hub_product_id) 1 @else 0 @endif">
+                                @if($product->hub_product_id)
+                                    <flux:switch checked
+                                        onchange="document.getElementById('sync-product-{{ $product->id }}').submit()" />
+                                @else
+                                    <flux:switch
+                                        onchange="document.getElementById('sync-product-{{ $product->id }}').submit()" />
+                                @endif
+                            </form>
+                        </td>
                         <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
                             <flux:dropdown>
                                 <flux:button icon:trailing="chevron-down">Actions</flux:button>
                                 <flux:menu>
-                                    <flux:menu.item icon="pencil" href="{{ route('products.edit', $product->id) }}">Edit</flux:menu.item>
-                                    <flux:menu.item icon="trash" variant="danger" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this product?')) document.getElementById('delete-form-{{ $product->id }}').submit();">Delete</flux:menu.item>
-                                    <form id="delete-form-{{ $product->id }}" action="{{ route('products.destroy', $product->id) }}" method="POST">
+                                    <flux:menu.item icon="pencil" href="{{ route('products.edit', $product->id) }}">Edit
+                                    </flux:menu.item>
+                                    <flux:menu.item icon="trash" variant="danger"
+                                        onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this product?')) document.getElementById('delete-form-{{ $product->id }}').submit();">
+                                        Delete</flux:menu.item>
+                                    <form id="delete-form-{{ $product->id }}"
+                                        action="{{ route('products.destroy', $product->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                     </form>

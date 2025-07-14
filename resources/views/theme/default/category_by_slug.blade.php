@@ -8,9 +8,9 @@
                 <p class="text-muted">{{ $category->description }}</p>
             </div>
         </div>
-        <div class="row">
+        <div class="row row-cols-3 row-cols-md-3 g-4 justify-content-center">
             @forelse($products as $product)
-                <div class="col-md-3 mb-4">
+                <div class="col mb-4">
                     <div class="card product-card h-100 shadow-sm">
                         <div class="text-center pt-3">
                             <div class="d-flex justify-content-center align-items-center rounded-circle border border-3 border-secondary-subtle bg-light" style="width: 80px; height: 80px; margin: auto;">

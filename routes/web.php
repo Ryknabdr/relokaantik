@@ -19,7 +19,7 @@ use App\Http\Controllers\AdminAuthController;
 Route::get('/', [HomepageController::class, 'index'])->name('home');
 Route::get('products', [HomepageController::class, 'products']);
 Route::get('product/{slug}', [HomepageController::class, 'product'])->name('product.show');
-Route::get('categories',[HomepageController::class, 'categories']);
+Route::get('categories', [HomepageController::class, 'categories']);
 Route::get('category/{slug}', [HomepageController::class, 'category']);
 
 
@@ -36,7 +36,7 @@ Route::get('contact', function () {
 
 Route::post('checkout/process', [HomepageController::class, 'processCheckout'])->name('checkout.process');
 
-Route::group(['middleware'=>['is_customer_login']], function(){
+Route::group(['middleware' => ['is_customer_login']], function () {
     Route::controller(CartController::class)->group(function () {
         Route::post('cart/add', 'add')->name('cart.add');
         Route::delete('cart/remove/{id}', 'remove')->name('cart.remove');
@@ -44,37 +44,39 @@ Route::group(['middleware'=>['is_customer_login']], function(){
     });
 });
 
-Route::group(['prefix'=>'customer'], function(){
-    Route::controller(CustomerAuthController::class)->group(function(){
-        Route::group(['middleware'=>'check_customer_login'], function(){
+Route::group(['prefix' => 'customer'], function () {
+    Route::controller(CustomerAuthController::class)->group(function () {
+        Route::group(['middleware' => 'check_customer_login'], function () {
             //tampilkan halaman login
-            Route::get('login','login')->name('customer.login');
+            Route::get('login', 'login')->name('customer.login');
 
             //aksi login
-            Route::post('login','store_login')->name('customer.store_login');
+            Route::post('login', 'store_login')->name('customer.store_login');
 
             //tampilkan halaman register
-            Route::get('register','register')->name('customer.register');
+            Route::get('register', 'register')->name('customer.register');
 
             //aksi register
-            Route::post('register','store_register')->name('customer.store_register');
+            Route::post('register', 'store_register')->name('customer.store_register');
         });
-        
+
 
         //aksi logout
-        Route::post('logout','logout')->name('customer.logout');
+        Route::post('logout', 'logout')->name('customer.logout');
 
     });
 });
 
 
 
-Route::group(['prefix'=>'dashboard','middleware'=>['auth','verified']], function(){
-    Route::get('/',[DashboardController::class,'index'])->name('dashboard');
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified']], function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::resource('categories',ProductCategoryController::class);
-    Route::resource('products',ProductController::class);
+    Route::resource('categories', ProductCategoryController::class);
+    Route::resource('products', ProductController::class);
     Route::resource('themes', ThemeController::class);
+    Route::post('products/sync/{id}', [ProductController::class, 'sync'])->name('products.sync');
+    Route::post('category/sync/{id}', [ProductCategoryController::class, 'sync'])->name('category.sync');
 
 });
 
@@ -97,4 +99,4 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
