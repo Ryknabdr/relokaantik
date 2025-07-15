@@ -103,14 +103,19 @@
                         </td>
                         <td class="px-5 py-5 text-xs text-gray-900 whitespace-nowrap max-w-[120px] truncate">
                             {{ $product->updated_at }}
-                        </td>
-                        <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
+                        <td>
                             <form id="sync-product-{{ $product->id }}" action="{{ route('products.sync', $product->id) }}"
                                 method="POST">
                                 @csrf
-                                <input type="hidden" name="is_active" value="{{ $product->hub_product_id ? 1 : 0 }}">
-                                <flux:switch {{ $product->hub_product_id ? 'checked' : '' }}
-                                    onchange="document.getElementById('sync-product-{{ $product->id }}').submit()" />
+                                <input type="hidden" name="is_active"
+                                    value="@if($product->hub_product_id) 1 @else 0 @endif">
+                                @if($product->hub_product_id)
+                                    <flux:switch checked
+                                        onchange="document.getElementById('sync-product-{{ $product->id }}').submit()" />
+                                @else
+                                    <flux:switch
+                                        onchange="document.getElementById('sync-product-{{ $product->id }}').submit()" />
+                                @endif
                             </form>
                         </td>
                         <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
