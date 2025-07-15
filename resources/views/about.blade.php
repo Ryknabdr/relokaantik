@@ -1,29 +1,31 @@
 <x-layout>
     <x-slot:title>About Us - Reloka</x-slot>
 
-    <div class="container mt-5">
+    <div class="container py-5">
         <div class="row align-items-center">
-            <div class="col-md-6 mb-4 mb-md-0">
-                <img src="{{ asset('theme/hexashop/assets/images/logorelokabaru.png') }}" alt="Reloka Logo" width="600" height="400" class="me-2">
+            <!-- Gambar di kiri -->
+            <div class="col-lg-6 text-center text-lg-start mb-4 mb-lg-0">
+                <img src="{{ asset('theme/hexashop/assets/images/logorelokabaru.png') }}"
+                     alt="Reloka Logo"
+                     class="img-fluid rounded shadow-sm"
+                     style="max-width: 100%; height: auto;">
             </div>
-            <div class="col-md-6">
-                <h1 class="fw-bold mb-3" style="font-family: 'Georgia', serif;">Tentang <span class="text-muted">Reloka</span></h1>
-                <p class="lead text-muted">
-                    Reloka adalah rumah bagi para pencinta sejarah, seni, dan barang antik berkualitas. Kami menghadirkan koleksi langka dan bernilai tinggi yang tak lekang oleh waktu.
+
+            <!-- Deskripsi di kanan -->
+            <div class="col-lg-6">
+                <h1 class="fw-bold mb-4" style="font-family: 'Georgia', serif;">
+                    Tentang <span class="text-muted">Reloka</span>
+                </h1>
+                <p class="lead text-muted mb-3">
+                    Reloka adalah rumah bagi pencinta sejarah, seni, dan barang antik berkualitas. Kami menyajikan koleksi langka—dari alat musik klasik, perabot kuno, hingga dokumen bersejarah—yang menyimpan kisah tak ternilai.
+                </p>
+                <p class="lead text-muted mb-3">
+                    Kami percaya bahwa barang antik bukan sekadar koleksi, melainkan warisan budaya. Nama <em>Reloka</em> berasal dari “relo” (relik) dan “ka” (karya/kisah), mencerminkan misi kami menyambung cerita masa lalu untuk generasi masa kini.
                 </p>
                 <p class="lead text-muted">
-                    Dari alat musik klasik, perabotan kuno, hingga dokumen dan buku bersejarah—setiap barang memiliki cerita unik yang ingin kami teruskan kepada pemilik barunya.
+                    Temukan keindahan yang abadi—barang antik yang tak hanya unik, tapi juga bermakna.
                 </p>
-                <p class="lead text-muted">
-                    Kami percaya bahwa barang antik bukan sekadar koleksi, tetapi warisan budaya yang layak dihargai dan dijaga. Melalui Reloka, kami menghubungkan masa lalu dengan masa kini.
-                </p>
-                <p class="lead text-muted">
-                    Nama "Reloka" sendiri terinspirasi dari kata "relo" (reliquia/relik) dan "ka" (karya/kisah), menggambarkan semangat kami untuk melestarikan artefak bernilai dan menyambung kisah di baliknya kepada generasi baru.
-                </p>
-                <p class="lead text-muted">
-                    Bergabunglah dengan kami dalam menjelajahi keindahan masa lampau yang abadi, dan temukan benda yang tidak hanya antik, tapi juga bermakna.
-                </p>
-                <a href="/products" class="btn btn-outline-dark mt-3">Jelajahi Koleksi</a>
+                <a href="/products" class="btn btn-outline-dark mt-4">Jelajahi Koleksi</a>
             </div>
         </div>
     </div>

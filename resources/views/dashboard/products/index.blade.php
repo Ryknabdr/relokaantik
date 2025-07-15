@@ -30,77 +30,43 @@
     @endif
 
     <div class="overflow-x-auto">
-        <table class="min-w-full leading-normal border border-gray-300 rounded-lg overflow-hidden table-fixed">
+        <table class="min-w-full leading-normal border border-gray-300 rounded-lg overflow-hidden table-auto">
             <thead class="bg-gray-200">
                 <tr>
-                    <th
-                        class="w-10 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                        ID
+                    <th class="w-10 px-5 py-3 border-b text-left text-xs font-semibold text-gray-700 uppercase">ID</th>
+                    <th class="w-16 px-5 py-3 border-b text-left text-xs font-semibold text-gray-700 uppercase">Image
                     </th>
-                    <th
-                        class="w-16 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                        Image
+                    <th class="w-32 px-5 py-3 border-b text-left text-xs font-semibold text-gray-700 uppercase">Name
                     </th>
-                    <th
-                        class="w-32 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                        Name
+                    <th class="w-24 px-5 py-3 border-b text-left text-xs font-semibold text-gray-700 uppercase">Slug
                     </th>
-                    <th
-                        class="w-24 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                        Slug
+                    <th class="w-48 px-5 py-3 border-b text-left text-xs font-semibold text-gray-700 uppercase">
+                        Description</th>
+                    <th class="w-20 px-5 py-3 border-b text-left text-xs font-semibold text-gray-700 uppercase">SKU</th>
+                    <th class="w-20 px-5 py-3 border-b text-left text-xs font-semibold text-gray-700 uppercase">Price
                     </th>
-                    <th
-                        class="w-48 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                        Description
+                    <th class="w-16 px-5 py-3 border-b text-left text-xs font-semibold text-gray-700 uppercase">Stock
                     </th>
-                    <th
-                        class="w-20 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                        SKU
+                    <th class="w-28 px-5 py-3 border-b text-left text-xs font-semibold text-gray-700 uppercase">Category
                     </th>
-                    <th
-                        class="w-20 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                        Price
+                    <th class="w-32 px-5 py-3 border-b text-left text-xs font-semibold text-gray-700 uppercase">Image
+                        URL</th>
+                    <th class="w-16 px-5 py-3 border-b text-left text-xs font-semibold text-gray-700 uppercase">Active
                     </th>
-                    <th
-                        class="w-16 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                        Stock
+                    <th class="w-28 px-5 py-3 border-b text-left text-xs font-semibold text-gray-700 uppercase">Created
+                        At</th>
+                    <th class="w-28 px-5 py-3 border-b text-left text-xs font-semibold text-gray-700 uppercase">Updated
+                        At</th>
+                    <th class="w-28 px-5 py-3 border-b text-left text-xs font-semibold text-gray-700 uppercase">On/Off
                     </th>
-                    <th
-                        class="w-28 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                        Product Category ID
-                    </th>
-                    <th
-                        class="w-32 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                        Image URL
-                    </th>
-                    <th
-                        class="w-16 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                        Active
-                    </th>
-                    <th
-                        class="w-28 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                        Created At
-                    </th>
-                    <th
-                        class="w-28 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                        Updated At
-                    </th>
-                    <th
-                        class="w-28 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                        On/Off
-                    </th>
-                    <th
-                        class="w-20 px-5 py-3 border-b border-gray-300 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                        Actions
+                    <th class="w-20 px-5 py-3 border-b text-left text-xs font-semibold text-gray-700 uppercase">Actions
                     </th>
                 </tr>
             </thead>
             <tbody class="bg-white">
                 @foreach($products as $key => $product)
-                    <tr class="border-b border-gray-300 hover:bg-gray-50">
-                        <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
-                            {{ $product->id }}
-                        </td>
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">{{ $product->id }}</td>
                         <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
                             @if($product->image_url)
                                 <img src="{{ url('/storage/' . $product->image_url) }}" alt="{{ $product->name }}"
@@ -111,52 +77,40 @@
                                 </div>
                             @endif
                         </td>
-                        <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
+                        <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap max-w-[100px] truncate">
                             {{ $product->name }}
                         </td>
-                        <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
+                        <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap max-w-[80px] truncate">
                             {{ $product->slug }}
                         </td>
-                        <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
+                        <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap max-w-[150px] truncate">
                             {{ $product->description }}
                         </td>
-                        <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
-                            {{ $product->sku }}
-                        </td>
-                        <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
-                            {{ $product->price }}
-                        </td>
-                        <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
-                            {{ $product->stock }}
-                        </td>
-                        <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
+                        <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">{{ $product->sku }}</td>
+                        <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">{{ $product->price }}</td>
+                        <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">{{ $product->stock }}</td>
+                        <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap max-w-[100px] truncate">
                             {{ $product->category ? $product->category->name : '-' }}
                         </td>
-                        <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
+                        <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap max-w-[120px] truncate">
                             {{ $product->image_url }}
                         </td>
                         <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
                             {{ $product->is_active ? 'Yes' : 'No' }}
                         </td>
-                        <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
+                        <td class="px-5 py-5 text-xs text-gray-900 whitespace-nowrap max-w-[120px] truncate">
                             {{ $product->created_at }}
                         </td>
-                        <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
+                        <td class="px-5 py-5 text-xs text-gray-900 whitespace-nowrap max-w-[120px] truncate">
                             {{ $product->updated_at }}
                         </td>
-                        <td>
+                        <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
                             <form id="sync-product-{{ $product->id }}" action="{{ route('products.sync', $product->id) }}"
                                 method="POST">
                                 @csrf
-                                <input type="hidden" name="is_active"
-                                    value="@if($product->hub_product_id) 1 @else 0 @endif">
-                                @if($product->hub_product_id)
-                                    <flux:switch checked
-                                        onchange="document.getElementById('sync-product-{{ $product->id }}').submit()" />
-                                @else
-                                    <flux:switch
-                                        onchange="document.getElementById('sync-product-{{ $product->id }}').submit()" />
-                                @endif
+                                <input type="hidden" name="is_active" value="{{ $product->hub_product_id ? 1 : 0 }}">
+                                <flux:switch {{ $product->hub_product_id ? 'checked' : '' }}
+                                    onchange="document.getElementById('sync-product-{{ $product->id }}').submit()" />
                             </form>
                         </td>
                         <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
@@ -167,7 +121,8 @@
                                     </flux:menu.item>
                                     <flux:menu.item icon="trash" variant="danger"
                                         onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this product?')) document.getElementById('delete-form-{{ $product->id }}').submit();">
-                                        Delete</flux:menu.item>
+                                        Delete
+                                    </flux:menu.item>
                                     <form id="delete-form-{{ $product->id }}"
                                         action="{{ route('products.destroy', $product->id) }}" method="POST">
                                         @csrf
@@ -180,5 +135,6 @@
                 @endforeach
             </tbody>
         </table>
+
     </div>
 </x-layouts.app>

@@ -101,6 +101,19 @@
             <a href="{{ url('/products') }}" class="btn btn-outline-primary btn-sm">Lihat Semua Produk</a>
         </div>
 
+        <!-- 🔍 Global Search -->
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-9">
+                <form method="GET" action="{{ url()->current() }}">
+                    <div class="input-group input-group-lg shadow-sm">
+                        <input type="text" name="search" class="form-control"
+                               placeholder="Cari barang..."
+                               value="{{ request('search') }}">
+                        <button class="btn btn-primary" type="submit">Cari</button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <div class="row">
             @forelse ($products as $product)
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">

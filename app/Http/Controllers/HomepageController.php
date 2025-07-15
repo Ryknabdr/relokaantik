@@ -22,10 +22,17 @@ class HomepageController extends Controller
         }
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $categories = Categories::latest()->take(4)->get();
-        $products = Product::where('is_active', true)->paginate(20);
+
+        $query = Product::where('is_active', true);
+
+        if ($request->has('search') && $request->search) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        $products = $query->paginate(20);
 
         return view($this->themeFolder . '.homepage', [
             'categories' => $categories,
