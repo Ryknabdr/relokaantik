@@ -1,6 +1,8 @@
 <x-layout>
-    <x-slot name="title"> {{$product->name}}</x-slot>
+    {{-- Judul halaman dari nama produk --}}
+    <x-slot name="title"> {{ $product->name }}</x-slot>
 
+    {{-- Pesan error dari session jika ada --}}
     @if(session('error'))
         <div class="container mt-4">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -11,11 +13,14 @@
     @endif
 
     <div class="container my-5">
+        {{-- Form pencarian produk --}}
         <form action="{{ url('/products') }}" method="GET" class="mb-4 d-flex" style="max-width: 400px;">
             <input type="text" name="search" class="form-control me-2" placeholder="Cari produk..." value="{{ request('search') }}">
             <button type="submit" class="btn btn-primary">Cari</button>
         </form>
+
         <div class="row g-5 align-items-start">
+            {{-- Kolom gambar produk --}}
             <div class="col-md-6">
                 <div class="bg-white shadow rounded p-3">
                     <img src="{{ $product->image_url ?? 'https://via.placeholder.com/500x500' }}" class="img-fluid rounded w-100" alt="{{ $product->name }}">
@@ -24,28 +29,37 @@
                     <span class="badge bg-secondary">{{ $product->category->name ?? 'Kategori Tidak Diketahui' }}</span>
                 </div>
             </div>
+
+            {{-- Kolom detail produk --}}
             <div class="col-md-6">
                 <h1 class="mb-2 fw-bold">{{ $product->name }}</h1>
+
+                {{-- Harga produk dan diskon jika ada --}}
                 <div class="mb-3">
                     <span class="fs-4 text-success fw-semibold">Rp.{{ number_format($product->price, 0, ',', '.') }}</span>
                     @if($product->old_price)
                         <span class="text-muted text-decoration-line-through ms-2">Rp{{ number_format($product->old_price, 0, ',', '.') }}</span>
                     @endif
                 </div>
+
+                {{-- Deskripsi singkat --}}
                 <div class="mb-4">
                     <p class="text-muted">{{ $product->description }}</p>
                 </div>
+
+                {{-- Form tambah ke keranjang --}}
                 <form action="{{ route('cart.add') }}" method="POST" class="mb-4">
                     @csrf
                     <div class="input-group" style="max-width: 320px;">
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
-                        
                         <input type="number" name="quantity" class="form-control" value="1" min="1" max="{{ $product->stock }}">
                         <button class="btn btn-primary" type="submit">
                             <i class="bi bi-cart-plus me-1"></i> Tambah ke Keranjang
                         </button>
                     </div>
                 </form>
+
+                {{-- Info stok dan kategori --}}
                 <ul class="list-group list-group-flush mb-4">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <span><strong>Stok:</strong></span>
@@ -60,6 +74,8 @@
                 </ul>
             </div>
         </div>
+
+        {{-- Deskripsi lengkap --}}
         <div class="row mt-5">
             <div class="col-12">
                 <h4 class="mb-3">Deskripsi Produk</h4>
@@ -70,6 +86,7 @@
         </div>
     </div>
 
+    {{-- Produk terkait --}}
     <div class="container my-5">
         <h3 class="mb-4">Produk Lainnya</h3>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
@@ -88,6 +105,8 @@
                     </div>
                 </div>
             @endforeach 
+
+            {{-- Jika tidak ada produk terkait --}}
             @if($relatedProducts->isEmpty())
                 <div class="col">
                     <div class="alert alert-info">Tidak ada produk terkait.</div>
@@ -95,5 +114,4 @@
             @endif
         </div>
     </div>
-    
 </x-layout>

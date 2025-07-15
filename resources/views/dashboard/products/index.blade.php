@@ -3,12 +3,14 @@
 @endphp
 
 <x-layouts.app :title="__('Products')">
+    <!-- Judul dan Subjudul -->
     <div class="relative mb-6 w-full">
         <flux:heading size="xl">Products</flux:heading>
         <flux:subheading size="lg" class="mb-6">Manage data Products</flux:subheading>
         <flux:separator variant="subtle" />
     </div>
 
+    <!-- Form pencarian dan tombol tambah produk -->
     <div class="flex justify-between items-center mb-4">
         <div>
             <form action="{{ route('products.index') }}" method="get">
@@ -23,16 +25,19 @@
         </div>
     </div>
 
+    <!-- Pesan sukses setelah aksi -->
     @if(session()->has('successMessage'))
         <div class="mb-3 w-full rounded bg-lime-100 border border-lime-400 text-lime-800 px-4 py-3">
             {{ session()->get('successMessage') }}
         </div>
     @endif
 
+    <!-- Tabel daftar produk -->
     <div class="overflow-x-auto">
         <table class="min-w-full leading-normal border border-gray-300 rounded-lg overflow-hidden table-auto">
             <thead class="bg-gray-200">
                 <tr>
+                    <!-- Header kolom -->
                     <th class="w-10 px-5 py-3 border-b text-left text-xs font-semibold text-gray-700 uppercase">ID</th>
                     <th class="w-16 px-5 py-3 border-b text-left text-xs font-semibold text-gray-700 uppercase">Image
                     </th>
@@ -66,7 +71,10 @@
             <tbody class="bg-white">
                 @foreach($products as $key => $product)
                     <tr class="border-b hover:bg-gray-50">
+                        <!-- Data setiap produk -->
                         <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">{{ $product->id }}</td>
+
+                        <!-- Gambar produk atau placeholder -->
                         <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
                             @if($product->image_url)
                                 <img src="{{ url('/storage/' . $product->image_url) }}" alt="{{ $product->name }}"
@@ -77,32 +85,29 @@
                                 </div>
                             @endif
                         </td>
+
+                        <!-- Data teks produk -->
                         <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap max-w-[100px] truncate">
-                            {{ $product->name }}
-                        </td>
+                            {{ $product->name }}</td>
                         <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap max-w-[80px] truncate">
-                            {{ $product->slug }}
-                        </td>
+                            {{ $product->slug }}</td>
                         <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap max-w-[150px] truncate">
-                            {{ $product->description }}
-                        </td>
+                            {{ $product->description }}</td>
                         <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">{{ $product->sku }}</td>
                         <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">{{ $product->price }}</td>
                         <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">{{ $product->stock }}</td>
                         <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap max-w-[100px] truncate">
-                            {{ $product->category ? $product->category->name : '-' }}
-                        </td>
+                            {{ $product->category ? $product->category->name : '-' }}</td>
                         <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap max-w-[120px] truncate">
-                            {{ $product->image_url }}
-                        </td>
+                            {{ $product->image_url }}</td>
                         <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
-                            {{ $product->is_active ? 'Yes' : 'No' }}
-                        </td>
+                            {{ $product->is_active ? 'Yes' : 'No' }}</td>
                         <td class="px-5 py-5 text-xs text-gray-900 whitespace-nowrap max-w-[120px] truncate">
-                            {{ $product->created_at }}
-                        </td>
+                            {{ $product->created_at }}</td>
                         <td class="px-5 py-5 text-xs text-gray-900 whitespace-nowrap max-w-[120px] truncate">
-                            {{ $product->updated_at }}
+                            {{ $product->updated_at }}</td>
+
+                        <!-- Tombol switch aktif / tidak -->
                         <td>
                             <form id="sync-product-{{ $product->id }}" action="{{ route('products.sync', $product->id) }}"
                                 method="POST">
@@ -118,6 +123,8 @@
                                 @endif
                             </form>
                         </td>
+
+                        <!-- Aksi Edit / Hapus -->
                         <td class="px-5 py-5 text-sm text-gray-900 whitespace-nowrap">
                             <flux:dropdown>
                                 <flux:button icon:trailing="chevron-down">Actions</flux:button>
@@ -140,6 +147,5 @@
                 @endforeach
             </tbody>
         </table>
-
     </div>
 </x-layouts.app>

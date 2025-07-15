@@ -1,73 +1,76 @@
 <div>
-<style>
-    /* Ringankan warna hover tombol user dropdown */
-    #userDropdown.btn-outline-dark:hover {
-        background-color: #e0e0e0;
-        color: #000;
-    }
+    <style>
+        /* Ringankan warna hover tombol user dropdown */
+        #userDropdown.btn-outline-dark:hover {
+            background-color: #e0e0e0;
+            color: #000;
+        }
 
-    /* Ringankan warna hover tombol Login dan Register */
-    .btn-outline-dark:hover {
-        background-color: #d3c4a1; /* warna hover yang lebih terang dan lembut */
-        color: #3c2f2f; /* warna teks yang lebih gelap agar kontras */
-    }
-</style>
-<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom shadow-sm py-3 fixed-top" style="font-family: 'Playfair Display', serif;">
-    <div class="container">
-        <a class="navbar-brand text-dark fw-bold d-flex align-items-center" href="/">
-            <img src="{{ asset('theme/hexashop/assets/images/logorelokabaru.png') }}" alt="Reloka Logo" width="80" height="40" class="me-2">
-            <span style="letter-spacing: 1px;">RELOKA</span>
-        </a>
+        /* Ringankan warna hover tombol Login dan Register */
+        .btn-outline-dark:hover {
+            background-color: #d3c4a1; /* warna hover yang lebih terang dan lembut */
+            color: #3c2f2f; /* warna teks yang lebih gelap agar kontras */
+        }
+    </style>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom shadow-sm py-3 fixed-top" style="font-family: 'Playfair Display', serif;">
+        <div class="container">
+            <a class="navbar-brand text-dark fw-bold d-flex align-items-center" href="/">
+                <img src="{{ asset('theme/hexashop/assets/images/logorelokabaru.png') }}" alt="Reloka Logo" width="80" height="40" class="me-2">
+                <span style="letter-spacing: 1px;">RELOKA</span>
+            </a>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link text-dark fw-medium px-3" href="/">Beranda</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark fw-medium px-3" href="/categories">Kategori</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark fw-medium px-3" href="/products">Produk</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark fw-medium px-3" href="/about">About</a>
-                </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link text-dark fw-medium px-3" href="/contact">Contact</a>
-                </li> -->
-            </ul>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-            <div class="d-flex align-items-center gap-2">
-                <x-cart-icon />
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-medium px-3" href="/">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-medium px-3" href="/categories">Kategori</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-medium px-3" href="/products">Produk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-medium px-3" href="/about">About</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link text-dark fw-medium px-3" href="/contact">Contact</a>
+                    </li> -->
+                </ul>
 
-                @if(auth()->guard('customer')->check())
-                    <div class="dropdown">
-                        <a class="btn btn-outline-dark rounded-pill px-3 py-1" href="#" role="button"
-                           id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ Auth::guard('customer')->user()->name }}
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="userDropdown">
-                            <li><a class="dropdown-item" href="#">Dashboard</a></li>
-                            <li>
-                                <form method="POST" action="{{ route('customer.logout') }}">
-                                    @csrf
-                                    <button class="dropdown-item" type="submit">Logout</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
-                @else
-                    <a class="btn btn-outline-dark rounded-pill px-3 py-1" href="{{ route('customer.login') }}">Login</a>
-<a class="btn btn-outline-dark rounded-pill px-3 py-1" href="{{ route('customer.register') }}">Register</a>
-                @endif
+                <div class="d-flex align-items-center gap-2">
+                    <x-cart-icon />
+
+                    @if(auth()->guard('customer')->check())
+                        <div class="dropdown">
+                            <a class="btn btn-outline-dark rounded-pill px-3 py-1" href="#" role="button"
+                               id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ Auth::guard('customer')->user()->name }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="userDropdown">
+                                <!-- <li><a class="dropdown-item" href="#">Dashboard</a></li> -->
+                                 <!-- <li><a class="dropdown-item" href="{{ route('settings.profile') }}">Profil</a></li> -->
+
+                                <li>
+                                    <form method="POST" action="{{ route('customer.logout') }}">
+                                        @csrf
+                                        <button class="dropdown-item" type="submit">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @else
+                        <a class="btn btn-outline-dark rounded-pill px-3 py-1" href="{{ route('customer.login') }}">Login</a>
+                        <a class="btn btn-outline-dark rounded-pill px-3 py-1" href="{{ route('customer.register') }}">Register</a>
+                    @endif
+                </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
 </div>

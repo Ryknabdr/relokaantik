@@ -1,5 +1,8 @@
 <x-layout>
+    {{-- Set judul halaman dari nama produk --}}
     <x-slot name="title">{{ $product->name }} - Antique Item</x-slot>
+
+    {{-- Notifikasi error jika ada --}}
     @if(session('error'))
         <div class="container mt-4">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -8,13 +11,19 @@
             </div>
         </div>
     @endif
+
+    {{-- Detail Produk --}}
     <div class="container my-5">
         <div class="row g-5 align-items-start">
+            {{-- Kolom kiri: Gambar dan badge info --}}
             <div class="col-md-6">
                 <div class="bg-white shadow rounded p-3">
+                    {{-- Gambar produk, gunakan placeholder jika tidak ada --}}
                     <img src="{{ $product->image_url ? (Str::startsWith($product->image_url, ['http://', 'https://']) ? $product->image_url : Storage::url($product->image_url)) : 'https://via.placeholder.com/500x500' }}"
                         class="img-fluid rounded w-100" alt="{{ $product->name }}">
                 </div>
+
+                {{-- Badge kategori, tahun, dan kondisi --}}
                 <div class="mt-3">
                     <span class="badge bg-primary">{{ $product->category->name ?? 'Uncategorized' }}</span>
                     @if($product->year_of_origin)
@@ -25,28 +34,34 @@
                     @endif
                 </div>
             </div>
+
+            {{-- Kolom kanan: Informasi nama, harga, deskripsi, dan form beli --}}
             <div class="col-md-6">
                 <h1 class="mb-2 fw-bold">{{ $product->name }}</h1>
+
+                {{-- Harga produk --}}
                 <div class="mb-3">
-                    <span
-                        class="fs-4 text-success fw-semibold">Rp.{{ number_format($product->price, 0, ',', '.') }}</span>
+                    <span class="fs-4 text-success fw-semibold">Rp.{{ number_format($product->price, 0, ',', '.') }}</span>
                 </div>
+
+                {{-- Deskripsi singkat --}}
                 <div class="mb-4">
                     <p class="text-muted">{{ $product->description }}</p>
                 </div>
+
+                {{-- Form untuk menambahkan produk ke keranjang --}}
                 <form action="{{ route('cart.add') }}" method="POST" class="mb-4">
                     @csrf
                     <div class="input-group" style="max-width: 320px;">
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
-                        <input type="number" name="quantity" class="form-control" value="1" min="1"
-                            max="{{ $product->stock }}">
+                        <input type="number" name="quantity" class="form-control" value="1" min="1" max="{{ $product->stock }}">
                         <button class="btn btn-primary" type="submit">
                             <i class="bi bi-cart-plus me-1"></i> Add to Cart
                         </button>
                     </div>
                 </form>
 
-                <!-- Antique Details -->
+                {{-- Detail spesifik produk antik --}}
                 <div class="card mb-4">
                     <div class="card-header bg-light">
                         <h5 class="card-title mb-0">Antique Details</h5>
@@ -91,6 +106,7 @@
                     </ul>
                 </div>
 
+                {{-- Informasi keaslian produk --}}
                 @if($product->authenticity_info)
                     <div class="card mb-4">
                         <div class="card-header bg-light">
@@ -104,6 +120,7 @@
             </div>
         </div>
 
+        {{-- Signifikansi sejarah --}}
         @if($product->historical_significance)
             <div class="row mt-5">
                 <div class="col-12">
@@ -119,6 +136,7 @@
             </div>
         @endif
 
+        {{-- Deskripsi panjang --}}
         <div class="row mt-5">
             <div class="col-12">
                 <h4 class="mb-3">Detailed Description</h4>
@@ -129,21 +147,29 @@
         </div>
     </div>
 
-    <!-- Related Products -->
+    {{-- Produk terkait --}}
     <div class="container my-5">
         <h3 class="mb-4">Other Antiques You May Like</h3>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
             @foreach($relatedProducts as $relatedProduct)
                 <div class="col">
                     <div class="card h-100 shadow-sm">
+                        {{-- Gambar produk terkait --}}
                         <img src="{{ $relatedProduct->image_url ? (Str::startsWith($relatedProduct->image_url, ['http://', 'https://']) ? $relatedProduct->image_url : Storage::url($relatedProduct->image_url)) : 'https://via.placeholder.com/350x200?text=No+Image' }}"
                             class="card-img-top" alt="{{ $relatedProduct->name }}">
+
                         <div class="card-body">
                             <h5 class="card-title">{{ $relatedProduct->name }}</h5>
+
+                            {{-- Tahun produk jika tersedia --}}
                             @if($relatedProduct->year_of_origin)
                                 <p class="card-text"><small class="text-muted">{{ $relatedProduct->year_of_origin }}</small></p>
                             @endif
+
+                            {{-- Deskripsi singkat --}}
                             <p class="card-text text-truncate">{{ $relatedProduct->description }}</p>
+
+                            {{-- Harga dan tombol detail --}}
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="fw-bold text-primary">Rp
                                     {{ number_format($relatedProduct->price, 0, ',', '.') }}</span>
@@ -154,6 +180,8 @@
                     </div>
                 </div>
             @endforeach
+
+            {{-- Jika tidak ada produk terkait --}}
             @if($relatedProducts->isEmpty())
                 <div class="col">
                     <div class="alert alert-info">No related antiques found.</div>

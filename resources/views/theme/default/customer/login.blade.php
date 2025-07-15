@@ -1,8 +1,11 @@
 <x-layout>
+    <x-slot:title>Masuk ke Akun</x-slot:title>
+
     <div class="d-flex justify-content-center align-items-center bg-light" style="min-height: 80vh;">
         <div class="card shadow-sm p-4 border-0" style="min-width: 350px; max-width: 400px; width: 100%; background: #fff;">
             <h3 class="mb-4 text-center" style="font-family: 'Playfair Display', serif;">Masuk ke Akun</h3>
 
+            {{-- Flash Message --}}
             @if(session('errorMessage'))
                 <div class="alert alert-danger">
                     {{ session('errorMessage') }}
@@ -15,8 +18,11 @@
                 </div>
             @endif
 
+            {{-- Form Login --}}
             <form method="POST" action="{{ route('customer.login') }}">
                 @csrf
+
+                {{-- Email --}}
                 <div class="mb-3">
                     <label for="email" class="form-label fw-semibold">Alamat Email</label>
                     <input 
@@ -33,6 +39,7 @@
                     @enderror
                 </div>
 
+                {{-- Password --}}
                 <div class="mb-3">
                     <label for="password" class="form-label fw-semibold">Kata Sandi</label>
                     <input 
@@ -47,25 +54,29 @@
                     @enderror
                 </div>
 
+                {{-- Remember Me --}}
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="remember" name="remember">
                     <label class="form-check-label" for="remember">Ingat saya</label>
                 </div>
 
+                {{-- Submit Button --}}
                 <button type="submit" class="btn btn-dark w-100 rounded-3" style="background-color: #6f4e37; border-color: #6f4e37;">
                     Masuk
                 </button>
 
+                {{-- Link to Register --}}
                 <div class="mt-3 text-center">
                     <small class="text-muted">
-                        Belum punya akun? <a href="{{ route('customer.register') }}" class="text-decoration-none">Daftar disini</a>
+                        Belum punya akun? 
+                        <a href="{{ route('customer.register') }}" class="text-decoration-none">Daftar disini</a>
                     </small>
                 </div>
             </form>
         </div>
     </div>
 
-    {{-- Tambahan gaya --}}
+    {{-- Custom Style --}}
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
